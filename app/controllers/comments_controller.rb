@@ -14,7 +14,6 @@ class CommentsController < ApplicationController
   # GET /comments/new
   def new
     @comment = @project.comments.build(user: Current.user)
-    debugger
     respond_to do |format|
       format.html
       format.turbo_stream

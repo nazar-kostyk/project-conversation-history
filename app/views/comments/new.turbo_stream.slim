@@ -1,2 +1,2 @@
-= turbo_stream.replace "new_comment_form" do
-  = render "comments/form", project: @project, comment: @comment
+= turbo_frame_tag "new_comment_form" do
+  = render partial: "comments/form", project: @project, comment: @comment
