@@ -1,0 +1,16 @@
+= turbo_frame_tag @comment
+  = form_with model: [@project, @comment], data: { turbo_frame: "_top" }, class: "space-y-4" do |form|
+    - if @comment.errors.any?
+      #error_explanation.text-red-500
+        h2= "#{pluralize(@comment.errors.count, "error")} prohibited this comment from being saved:"
+        ul
+          - @comment.errors.each do |error|
+            li= error.full_message
+
+    div
+      = form.label :content, "Your comment", class: "block text-sm font-medium text-gray-700"
+      = form.text_area :content, rows: 4, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+
+    .flex.items-center.justify-end.space-x-2
+      = form.submit "Submit Comment", class: "rounded-md px-3.5 py-2.5 bg-green-600 hover:bg-green-500 text-white font-medium cursor-pointer"
+      = link_to "Cancel", new_project_comment_path(@project), data: { turbo_frame: "new_comment_form" }, class: "rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 font-medium"

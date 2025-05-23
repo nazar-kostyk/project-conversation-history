@@ -5,3 +5,14 @@ div id="#{dom_id project}" class="w-full sm:w-auto my-5 space-y-5"
   div
     strong class="block font-medium mb-1" Status:
     = project.status
+
+  div
+    strong class="block font-medium mb-1" Comments:
+    .div id=dom_id(project, :comments)
+      - if project.comments.present?
+        = render project.comments
+      - else
+        | No comments yet.
+
+    = turbo_frame_tag "new_comment_form" do
+      = render partial: "comments/new_comment_button", locals: { project: project }
